@@ -1,6 +1,14 @@
 module Bootstrap.Grid.Row exposing
-    ( topXs, topSm, topMd, topLg, topXl, middleXs, middleSm, middleMd, middleLg, middleXl, bottomXs, bottomSm, bottomMd, bottomLg, bottomXl
-    , leftXs, leftSm, leftMd, leftLg, leftXl, centerXs, centerSm, centerMd, centerLg, centerXl, rightXs, rightSm, rightMd, rightLg, rightXl, aroundXs, aroundSm, aroundMd, aroundLg, aroundXl, betweenXs, betweenSm, betweenMd, betweenLg, betweenXl
+    ( topXs, topSm, topMd, topLg, topXl, topXxl
+    , middleXs, middleSm, middleMd, middleLg, middleXl, middleXxl
+    , bottomXs, bottomSm, bottomMd, bottomLg, bottomXl, bottomXxl
+
+    , leftXs, leftSm, leftMd, leftLg, leftXl, leftXxl
+    , centerXs, centerSm, centerMd, centerLg, centerXl, centerXxl
+    , rightXs, rightSm, rightMd, rightLg, rightXl, rightXxl
+    , aroundXs, aroundSm, aroundMd, aroundLg, aroundXl, aroundXxl
+    , betweenXs, betweenSm, betweenMd, betweenLg, betweenXl, betweenXxl
+
     , attrs, Option
     )
 
@@ -9,12 +17,18 @@ module Bootstrap.Grid.Row exposing
 
 # Vertical alignment
 
-@docs topXs, topSm, topMd, topLg, topXl, middleXs, middleSm, middleMd, middleLg, middleXl, bottomXs, bottomSm, bottomMd, bottomLg, bottomXl
+@docs topXs, topSm, topMd, topLg, topXl, topXxl,
+middleXs, middleSm, middleMd, middleLg, middleXl, middleXxl,
+bottomXs, bottomSm, bottomMd, bottomLg, bottomXl, bottomXxl
 
 
 # Horizontal alignment
 
-@docs leftXs, leftSm, leftMd, leftLg, leftXl, centerXs, centerSm, centerMd, centerLg, centerXl, rightXs, rightSm, rightMd, rightLg, rightXl, aroundXs, aroundSm, aroundMd, aroundLg, aroundXl, betweenXs, betweenSm, betweenMd, betweenLg, betweenXl
+@docs leftXs, leftSm, leftMd, leftLg, leftXl, leftXxl,
+centerXs, centerSm, centerMd, centerLg, centerXl, centerXxl,
+rightXs, rightSm, rightMd, rightLg, rightXl, rightXxl,
+aroundXs, aroundSm, aroundMd, aroundLg, aroundXl, aroundXxl,
+betweenXs, betweenSm, betweenMd, betweenLg, betweenXl, betweenXxl
 
 
 # Misc
@@ -74,6 +88,11 @@ topXl : Option msg
 topXl =
     rowVAlign XL Top
 
+{-| -}
+topXxl : Option msg
+topXxl =
+    rowVAlign XXL Top
+
 
 {-| -}
 middleXs : Option msg
@@ -104,6 +123,10 @@ middleXl : Option msg
 middleXl =
     rowVAlign XL Middle
 
+{-| -}
+middleXxl : Option msg
+middleXxl =
+    rowVAlign XXL Middle
 
 {-| -}
 bottomXs : Option msg
@@ -133,6 +156,11 @@ bottomLg =
 bottomXl : Option msg
 bottomXl =
     rowVAlign XL Bottom
+
+{-| -}
+bottomXxl : Option msg
+bottomXxl =
+    rowVAlign XXL Bottom
 
 
 
@@ -168,6 +196,12 @@ leftXl : Option msg
 leftXl =
     rowHAlign XL Left
 
+{-| -}
+leftXxl : Option msg
+leftXxl =
+    rowHAlign XXL Left
+
+
 
 {-| -}
 centerXs : Option msg
@@ -198,6 +232,11 @@ centerXl : Option msg
 centerXl =
     rowHAlign XL Center
 
+{-| -}
+centerXxl : Option msg
+centerXxl =
+    rowHAlign XXL Center
+
 
 {-| -}
 rightXs : Option msg
@@ -227,6 +266,11 @@ rightLg =
 rightXl : Option msg
 rightXl =
     rowHAlign XL Right
+
+{-| -}
+rightXxl : Option msg
+rightXxl =
+    rowHAlign XXL Right
 
 
 {-| -}
@@ -260,6 +304,12 @@ aroundXl =
 
 
 {-| -}
+aroundXxl : Option msg
+aroundXxl =
+    rowHAlign XXL Around
+
+
+{-| -}
 betweenXs : Option msg
 betweenXs =
     rowHAlign XS Between
@@ -287,3 +337,8 @@ betweenLg =
 betweenXl : Option msg
 betweenXl =
     rowHAlign XL Between
+
+{-| -}
+betweenXxl : Option msg
+betweenXxl =
+    rowHAlign XXL Between

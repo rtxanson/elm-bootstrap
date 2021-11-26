@@ -1,11 +1,23 @@
 module Bootstrap.Navbar exposing
     ( view, config, Config
-    , withAnimation, primary, secondary, success, info, warning, danger, light, dark, fixTop, fixBottom, lightCustom, darkCustom, lightCustomClass, darkCustomClass, collapseSmall, collapseMedium, collapseLarge, collapseExtraLarge, container, attrs
+
+    , withAnimation
+        , primary , secondary , success , info , warning , danger , light ,
+        dark , fixTop, fixBottom, lightCustom, darkCustom, lightCustomClass,
+        darkCustomClass, collapseSmall, collapseMedium, collapseLarge,
+        collapseExtraLarge, collapseExtraExtraLarge, container, attrs
+
     , brand, Brand
+
     , items, itemLink, itemLinkActive, Item
-    , dropdown, dropdownToggle, dropdownItem, dropdownDivider, dropdownHeader, DropdownToggle, DropdownItem
+
+    , dropdown, dropdownToggle, dropdownItem, dropdownDivider, dropdownHeader,
+        DropdownToggle, DropdownItem
+
     , customItems, textItem, formItem, customItem, CustomItem
+
     , initialState, State
+
     , subscriptions
     )
 
@@ -63,7 +75,10 @@ The navbar is designed to be responsive by default and made interactive with a t
 
 ## Options
 
-@docs withAnimation, primary, secondary, success, info, warning, danger, light, dark, fixTop, fixBottom, lightCustom, darkCustom, lightCustomClass, darkCustomClass, collapseSmall, collapseMedium, collapseLarge, collapseExtraLarge, container, attrs
+@docs withAnimation, primary, secondary, success, info, warning, danger, light,
+dark, fixTop, fixBottom, lightCustom, darkCustom, lightCustomClass,
+darkCustomClass, collapseSmall, collapseMedium, collapseLarge,
+collapseExtraLarge, collapseExtraExtraLarge, container, attrs
 
 
 ## Brand
@@ -602,6 +617,12 @@ collapseExtraLarge : Config msg -> Config msg
 collapseExtraLarge =
     toggleAt XL
 
+{-| Collapse the menu at the extra extra large media breakpoint
+-}
+collapseExtraExtraLarge : Config msg -> Config msg
+collapseExtraExtraLarge =
+    toggleAt XXL
+
 
 toggleAt : ScreenSize -> Config msg -> Config msg
 toggleAt size conf =
@@ -943,6 +964,9 @@ sizeToComparable size =
         XL ->
             5
 
+        XXL ->
+            6
+
 
 toScreenSize : Float -> ScreenSize
 toScreenSize windowWidth =
@@ -958,8 +982,11 @@ toScreenSize windowWidth =
     else if windowWidth <= 1200 then
         LG
 
-    else
+    else if windowWidth <= 1400 then
         XL
+
+    else
+        XXL
 
 
 transitionHandler : State -> ConfigRec msg -> Json.Decoder msg
@@ -1101,6 +1128,9 @@ expandOption size =
 
         LG ->
             [ toClass XL ]
+
+        XL ->
+            [ toClass XXL ]
 
         _ ->
             []

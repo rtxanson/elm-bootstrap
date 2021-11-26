@@ -24,6 +24,7 @@ type ScreenSize
     | MD
     | LG
     | XL
+    | XXL
 
 
 hAlignClass : HAlign -> Html.Attribute msg
@@ -73,3 +74,6 @@ screenSizeOption size =
 
         XL ->
             Just "xl"
+        
+        XXL ->
+            Just "xxl"

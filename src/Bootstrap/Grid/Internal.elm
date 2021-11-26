@@ -139,31 +139,37 @@ type alias ColOptions msg =
     , widthMd : Maybe Width
     , widthLg : Maybe Width
     , widthXl : Maybe Width
+    , widthXxl : Maybe Width
     , offsetXs : Maybe Offset
     , offsetSm : Maybe Offset
     , offsetMd : Maybe Offset
     , offsetLg : Maybe Offset
     , offsetXl : Maybe Offset
+    , offsetXxl : Maybe Offset
     , pullXs : Maybe Pull
     , pullSm : Maybe Pull
     , pullMd : Maybe Pull
     , pullLg : Maybe Pull
     , pullXl : Maybe Pull
+    , pullXxl : Maybe Pull
     , pushXs : Maybe Push
     , pushSm : Maybe Push
     , pushMd : Maybe Push
     , pushLg : Maybe Push
     , pushXl : Maybe Push
+    , pushXxl : Maybe Push
     , orderXs : Maybe Order
     , orderSm : Maybe Order
     , orderMd : Maybe Order
     , orderLg : Maybe Order
     , orderXl : Maybe Order
+    , orderXxl : Maybe Order
     , alignXs : Maybe VAlign
     , alignSm : Maybe VAlign
     , alignMd : Maybe VAlign
     , alignLg : Maybe VAlign
     , alignXl : Maybe VAlign
+    , alignXxl : Maybe VAlign
     }
 
 
@@ -174,11 +180,13 @@ type alias RowOptions msg =
     , vAlignMd : Maybe VAlign
     , vAlignLg : Maybe VAlign
     , vAlignXl : Maybe VAlign
+    , vAlignXxl : Maybe VAlign
     , hAlignXs : Maybe HAlign
     , hAlignSm : Maybe HAlign
     , hAlignMd : Maybe HAlign
     , hAlignLg : Maybe HAlign
     , hAlignXl : Maybe HAlign
+    , hAlignXxl : Maybe HAlign
     }
 
 
@@ -235,6 +243,7 @@ colAttributes modifiers =
                 , options.widthMd
                 , options.widthLg
                 , options.widthXl
+                , options.widthXxl
                 ]
                 |> List.length
             )
@@ -250,6 +259,7 @@ colAttributes modifiers =
         , options.widthMd
         , options.widthLg
         , options.widthXl
+        , options.widthXxl
         ]
         ++ offsetsToAttributes
             [ options.offsetXs
@@ -257,6 +267,7 @@ colAttributes modifiers =
             , options.offsetMd
             , options.offsetLg
             , options.offsetXl
+            , options.offsetXxl
             ]
         ++ pullsToAttributes
             [ options.pullXs
@@ -264,6 +275,7 @@ colAttributes modifiers =
             , options.pullMd
             , options.pullLg
             , options.pullXl
+            , options.pullXxl
             ]
         ++ pushesToAttributes
             [ options.pushXs
@@ -271,6 +283,7 @@ colAttributes modifiers =
             , options.pushMd
             , options.pushLg
             , options.pushXl
+            , options.pushXxl
             ]
         ++ orderToAttributes
             [ options.orderXs
@@ -278,6 +291,7 @@ colAttributes modifiers =
             , options.orderMd
             , options.orderLg
             , options.orderXl
+            , options.orderXxl
             ]
         ++ vAlignsToAttributes "align-self-"
             [ options.alignXs
@@ -285,6 +299,7 @@ colAttributes modifiers =
             , options.alignMd
             , options.alignLg
             , options.alignXl
+            , options.alignXxl
             ]
         ++ (case options.textAlign of
                 Just a ->
@@ -309,6 +324,7 @@ rowAttributes modifiers =
             , options.vAlignMd
             , options.vAlignLg
             , options.vAlignXl
+            , options.vAlignXxl
             ]
         ++ hAlignsToAttributes
             [ options.hAlignXs
@@ -316,6 +332,7 @@ rowAttributes modifiers =
             , options.hAlignMd
             , options.hAlignLg
             , options.hAlignXl
+            , options.hAlignXxl
             ]
         ++ options.attributes
 
@@ -366,6 +383,9 @@ applyColWidth width_ options =
         XL ->
             { options | widthXl = Just width_ }
 
+        XXL ->
+            { options | widthXxl = Just width_ }
+
 
 applyColOffset : Offset -> ColOptions msg -> ColOptions msg
 applyColOffset offset_ options =
@@ -384,6 +404,9 @@ applyColOffset offset_ options =
 
         XL ->
             { options | offsetXl = Just offset_ }
+
+        XXL ->
+            { options | offsetXxl = Just offset_ }
 
 
 applyColPull : Pull -> ColOptions msg -> ColOptions msg
@@ -404,6 +427,9 @@ applyColPull pull_ options =
         XL ->
             { options | pullXl = Just pull_ }
 
+        XXL ->
+            { options | pullXxl = Just pull_ }
+
 
 applyColPush : Push -> ColOptions msg -> ColOptions msg
 applyColPush push_ options =
@@ -423,6 +449,8 @@ applyColPush push_ options =
         XL ->
             { options | pushXl = Just push_ }
 
+        XXL ->
+            { options | pushXxl = Just push_ }
 
 applyColOrder : Order -> ColOptions msg -> ColOptions msg
 applyColOrder order_ options =
@@ -442,6 +470,8 @@ applyColOrder order_ options =
         XL ->
             { options | orderXl = Just order_ }
 
+        XXL ->
+            { options | orderXxl = Just order_ }
 
 applyColAlign : VAlign -> ColOptions msg -> ColOptions msg
 applyColAlign align_ options =
@@ -460,6 +490,9 @@ applyColAlign align_ options =
 
         XL ->
             { options | alignXl = Just align_ }
+
+        XXL ->
+            { options | alignXxl = Just align_ }
 
 
 applyRowOption : RowOption msg -> RowOptions msg -> RowOptions msg
@@ -493,6 +526,9 @@ applyRowVAlign align_ options =
         XL ->
             { options | vAlignXl = Just align_ }
 
+        XXL ->
+            { options | vAlignXxl = Just align_ }
+
 
 applyRowHAlign : HAlign -> RowOptions msg -> RowOptions msg
 applyRowHAlign align options =
@@ -512,6 +548,9 @@ applyRowHAlign align options =
         XL ->
             { options | hAlignXl = Just align }
 
+        XXL ->
+            { options | hAlignXxl = Just align }
+
 
 defaultColOptions : ColOptions msg
 defaultColOptions =
@@ -522,31 +561,37 @@ defaultColOptions =
     , widthMd = Nothing
     , widthLg = Nothing
     , widthXl = Nothing
+    , widthXxl = Nothing
     , offsetXs = Nothing
     , offsetSm = Nothing
     , offsetMd = Nothing
     , offsetLg = Nothing
     , offsetXl = Nothing
+    , offsetXxl = Nothing
     , pullXs = Nothing
     , pullSm = Nothing
     , pullMd = Nothing
     , pullLg = Nothing
     , pullXl = Nothing
+    , pullXxl = Nothing
     , pushXs = Nothing
     , pushSm = Nothing
     , pushMd = Nothing
     , pushLg = Nothing
     , pushXl = Nothing
+    , pushXxl = Nothing
     , orderXs = Nothing
     , orderSm = Nothing
     , orderMd = Nothing
     , orderLg = Nothing
     , orderXl = Nothing
+    , orderXxl = Nothing
     , alignXs = Nothing
     , alignSm = Nothing
     , alignMd = Nothing
     , alignLg = Nothing
     , alignXl = Nothing
+    , alignXxl = Nothing
     }
 
 
@@ -558,11 +603,13 @@ defaultRowOptions =
     , vAlignMd = Nothing
     , vAlignLg = Nothing
     , vAlignXl = Nothing
+    , vAlignXxl = Nothing
     , hAlignXs = Nothing
     , hAlignSm = Nothing
     , hAlignMd = Nothing
     , hAlignLg = Nothing
     , hAlignXl = Nothing
+    , hAlignXxl = Nothing
     }
 
 

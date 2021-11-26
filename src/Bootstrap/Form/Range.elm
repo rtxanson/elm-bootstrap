@@ -13,7 +13,7 @@ module Bootstrap.Form.Range exposing
 
 # Options
 
-@docs id, min, max, step, value, disabled, onInput, disabled, attrs, Option
+@docs id, min, max, step, value, onInput, disabled, attrs, Option
 
 -}
 

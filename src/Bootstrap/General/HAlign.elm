@@ -1,8 +1,20 @@
-module Bootstrap.General.HAlign exposing (leftXs, leftSm, leftMd, leftLg, leftXl, centerXs, centerSm, centerMd, centerLg, centerXl, rightXs, rightSm, rightMd, rightLg, rightXl, aroundXs, aroundSm, aroundMd, aroundLg, aroundXl, betweenXs, betweenSm, betweenMd, betweenLg, betweenXl, HAlign)
+module Bootstrap.General.HAlign exposing 
+  ( leftXs, leftSm, leftMd, leftLg, leftXl, leftXxl, 
+  centerXs, centerSm, centerMd, centerLg, centerXl, centerXxl,
+  rightXs, rightSm, rightMd, rightLg, rightXl, rightXxl,
+  aroundXs, aroundSm, aroundMd, aroundLg, aroundXl, aroundXxl,
+  betweenXs, betweenSm, betweenMd, betweenLg, betweenXl, betweenXxl,
+  HAlign
+  )
 
 {-| General utility for creating a Horizontal alignment option (i.e. flex-justify-)
 
-@docs leftXs, leftSm, leftMd, leftLg, leftXl, centerXs, centerSm, centerMd, centerLg, centerXl, rightXs, rightSm, rightMd, rightLg, rightXl, aroundXs, aroundSm, aroundMd, aroundLg, aroundXl, betweenXs, betweenSm, betweenMd, betweenLg, betweenXl, HAlign
+@docs leftXs, leftSm, leftMd, leftLg, leftXl, leftXxl,
+centerXs, centerSm, centerMd, centerLg, centerXl, centerXxl,
+rightXs, rightSm, rightMd, rightLg, rightXl, rightXxl,
+aroundXs, aroundSm, aroundMd, aroundLg, aroundXl, aroundXxl,
+betweenXs, betweenSm, betweenMd, betweenLg, betweenXl, betweenXxl,
+HAlign
 
 -}
 
@@ -44,6 +56,11 @@ leftXl : HAlign
 leftXl =
     Internal.HAlign XL Left
 
+{-| -}
+leftXxl : HAlign
+leftXxl =
+    Internal.HAlign XXL Left
+
 
 {-| -}
 centerXs : HAlign
@@ -74,6 +91,10 @@ centerXl : HAlign
 centerXl =
     Internal.HAlign XL Center
 
+{-| -}
+centerXxl : HAlign
+centerXxl =
+    Internal.HAlign XXL Center
 
 {-| -}
 rightXs : HAlign
@@ -103,6 +124,11 @@ rightLg =
 rightXl : HAlign
 rightXl =
     Internal.HAlign XL Right
+
+{-| -}
+rightXxl : HAlign
+rightXxl =
+    Internal.HAlign XXL Right
 
 
 {-| -}
@@ -136,6 +162,11 @@ aroundXl =
 
 
 {-| -}
+aroundXxl : HAlign
+aroundXxl =
+    Internal.HAlign XXL Around
+
+{-| -}
 betweenXs : HAlign
 betweenXs =
     Internal.HAlign XS Between
@@ -163,3 +194,8 @@ betweenLg =
 betweenXl : HAlign
 betweenXl =
     Internal.HAlign XL Between
+
+{-| -}
+betweenXxl : HAlign
+betweenXxl =
+    Internal.HAlign XXL Between

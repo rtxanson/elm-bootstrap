@@ -1,6 +1,15 @@
 module Bootstrap.Text exposing
-    ( alignXsLeft, alignXsCenter, alignXsRight, alignSmLeft, alignSmCenter, alignSmRight, alignMdLeft, alignMdCenter, alignMdRight, alignLgLeft, alignLgCenter, alignLgRight, alignXlLeft, alignXlCenter, alignXlRight, HAlign
-    , white, primary, secondary, success, info, warning, danger, light, dark, Color
+    ( alignXsLeft, alignXsCenter, alignXsRight, 
+    alignSmLeft, alignSmCenter, alignSmRight, 
+    alignMdLeft, alignMdCenter, alignMdRight, 
+    alignLgLeft, alignLgCenter, alignLgRight, 
+    alignXlLeft, alignXlCenter, alignXlRight, 
+    alignXxlLeft, alignXxlCenter, alignXxlRight, 
+    HAlign
+
+    , white, primary, secondary, success, info, warning, danger, light, dark,
+    Color
+
     )
 
 {-| Utilities for text options. Currently only exposing helpers used by Bootstrap.Card for horizontal alignment and text coloring
@@ -8,12 +17,19 @@ module Bootstrap.Text exposing
 
 # Aligment
 
-@docs alignXsLeft, alignXsCenter, alignXsRight, alignSmLeft, alignSmCenter, alignSmRight, alignMdLeft, alignMdCenter, alignMdRight, alignLgLeft, alignLgCenter, alignLgRight, alignXlLeft, alignXlCenter, alignXlRight, HAlign
+@docs alignXsLeft, alignXsCenter, alignXsRight, 
+alignSmLeft, alignSmCenter, alignSmRight, 
+alignMdLeft, alignMdCenter, alignMdRight, 
+alignLgLeft, alignLgCenter, alignLgRight, 
+alignXlLeft, alignXlCenter, alignXlRight, 
+alignXxlLeft, alignXxlCenter, alignXxlRight, 
+HAlign
 
 
 # Text coloring
 
-@docs white, primary, secondary, success, info, warning, danger, light, dark, Color
+@docs white, primary, secondary, success, info, warning, danger, light, dark,
+Color
 
 -}
 
@@ -172,6 +188,33 @@ alignXl : TextAlignDir -> HAlign
 alignXl dir =
     { dir = dir
     , size = XL
+    }
+
+{-| Align left at extra large responsive breakpoint
+-}
+alignXxlLeft : HAlign
+alignXxlLeft =
+    alignXxl Left
+
+
+{-| Align center at extra large responsive breakpoint
+-}
+alignXxlCenter : HAlign
+alignXxlCenter =
+    alignXxl Center
+
+
+{-| Align right at extra large responsive breakpoint
+-}
+alignXxlRight : HAlign
+alignXxlRight =
+    alignXxl Right
+
+
+alignXxl : TextAlignDir -> HAlign
+alignXxl dir =
+    { dir = dir
+    , size = XXL
     }
 
 

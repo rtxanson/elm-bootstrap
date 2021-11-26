@@ -1,13 +1,26 @@
 module Bootstrap.Table exposing
     ( simpleTable, table
-    , inversed, striped, bordered, hover, small, responsive, responsiveSm, responsiveMd, responsiveLg, responsiveXl, attr, TableOption
+
+    , inversed, striped, bordered, hover, small
+
+    , responsive, responsiveSm, responsiveMd, responsiveLg, responsiveXl, responsiveXxl
+
+    , attr, TableOption
+
     , simpleThead, thead, headAttr, THead
+
     , defaultHead, inversedHead, TableHeadOption
+
     , tbody, keyedTBody, TBody
+
     , tr, keyedTr, Row
+
     , rowActive, rowPrimary, rowSecondary, rowInfo, rowSuccess, rowWarning, rowDanger, rowLight, rowDark, rowAttr, RowOption
+
     , td, th, Cell
+
     , cellActive, cellPrimary, cellSecondary, cellInfo, cellSuccess, cellWarning, cellDanger, cellLight, cellDark, cellAttr, CellOption
+
     )
 
 {-| Create simple and customizable tables in a fairly type safe manner!
@@ -20,7 +33,7 @@ module Bootstrap.Table exposing
 
 ## Table options
 
-@docs inversed, striped, bordered, hover, small, responsive, responsiveSm, responsiveMd, responsiveLg, responsiveXl, attr, TableOption
+@docs inversed, striped, bordered, hover, small, responsive, responsiveSm, responsiveMd, responsiveLg, responsiveXl, responsiveXxl, attr, TableOption
 
 
 # Table headers
@@ -227,6 +240,12 @@ responsiveLg =
 responsiveXl : TableOption msg
 responsiveXl =
     Responsive <| Just XL
+
+{-| Make table responsive for up until the -xl breakpoint.
+-}
+responsiveXxl : TableOption msg
+responsiveXxl =
+    Responsive <| Just XXL
 
 
 {-| Allows you to create a simple default table

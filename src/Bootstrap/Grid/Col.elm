@@ -1,30 +1,43 @@
 module Bootstrap.Grid.Col exposing
-    ( topXs, topSm, topMd, topLg, topXl, middleXs, middleSm, middleMd, middleLg, middleXl, bottomXs, bottomSm, bottomMd, bottomLg, bottomXl
+    ( topXs, topSm, topMd, topLg, topXl, topXxl
+    , middleXs, middleSm, middleMd, middleLg, middleXl, middleXxl
+    , bottomXs, bottomSm, bottomMd, bottomLg, bottomXl, bottomXxl
+
     , xs, xs1, xs2, xs3, xs4, xs5, xs6, xs7, xs8, xs9, xs10, xs11, xs12, xsAuto
     , sm, sm1, sm2, sm3, sm4, sm5, sm6, sm7, sm8, sm9, sm10, sm11, sm12, smAuto
     , md, md1, md2, md3, md4, md5, md6, md7, md8, md9, md10, md11, md12, mdAuto
     , lg, lg1, lg2, lg3, lg4, lg5, lg6, lg7, lg8, lg9, lg10, lg11, lg12, lgAuto
     , xl, xl1, xl2, xl3, xl4, xl5, xl6, xl7, xl8, xl9, xl10, xl11, xl12, xlAuto
+    , xxl, xxl1, xxl2, xxl3, xxl4, xxl5, xxl6, xxl7, xxl8, xxl9, xxl10, xxl11, xxl12, xxlAuto
+
     , offsetXs1, offsetXs2, offsetXs3, offsetXs4, offsetXs5, offsetXs6, offsetXs7, offsetXs8, offsetXs9, offsetXs10, offsetXs11
     , offsetSm0, offsetSm1, offsetSm2, offsetSm3, offsetSm4, offsetSm5, offsetSm6, offsetSm7, offsetSm8, offsetSm9, offsetSm10, offsetSm11
     , offsetMd0, offsetMd1, offsetMd2, offsetMd3, offsetMd4, offsetMd5, offsetMd6, offsetMd7, offsetMd8, offsetMd9, offsetMd10, offsetMd11
     , offsetLg0, offsetLg1, offsetLg2, offsetLg3, offsetLg4, offsetLg5, offsetLg6, offsetLg7, offsetLg8, offsetLg9, offsetLg10, offsetLg11
     , offsetXl0, offsetXl1, offsetXl2, offsetXl3, offsetXl4, offsetXl5, offsetXl6, offsetXl7, offsetXl8, offsetXl9, offsetXl10, offsetXl11
+    , offsetXxl0, offsetXxl1, offsetXxl2, offsetXxl3, offsetXxl4, offsetXxl5, offsetXxl6, offsetXxl7, offsetXxl8, offsetXxl9, offsetXxl10, offsetXxl11
+
     , pullXs0, pullXs1, pullXs2, pullXs3, pullXs4, pullXs5, pullXs6, pullXs7, pullXs8, pullXs9, pullXs10, pullXs11, pullXs12
     , pullSm0, pullSm1, pullSm2, pullSm3, pullSm4, pullSm5, pullSm6, pullSm7, pullSm8, pullSm9, pullSm10, pullSm11, pullSm12
     , pullMd0, pullMd1, pullMd2, pullMd3, pullMd4, pullMd5, pullMd6, pullMd7, pullMd8, pullMd9, pullMd10, pullMd11, pullMd12
     , pullLg0, pullLg1, pullLg2, pullLg3, pullLg4, pullLg5, pullLg6, pullLg7, pullLg8, pullLg9, pullLg10, pullLg11, pullLg12
     , pullXl0, pullXl1, pullXl2, pullXl3, pullXl4, pullXl5, pullXl6, pullXl7, pullXl8, pullXl9, pullXl10, pullXl11, pullXl12
+    , pullXxl0, pullXxl1, pullXxl2, pullXxl3, pullXxl4, pullXxl5, pullXxl6, pullXxl7, pullXxl8, pullXxl9, pullXxl10, pullXxl11, pullXxl12
+
     , pushXs0, pushXs1, pushXs2, pushXs3, pushXs4, pushXs5, pushXs6, pushXs7, pushXs8, pushXs9, pushXs10, pushXs11, pushXs12
     , pushSm0, pushSm1, pushSm2, pushSm3, pushSm4, pushSm5, pushSm6, pushSm7, pushSm8, pushSm9, pushSm10, pushSm11, pushSm12
     , pushMd0, pushMd1, pushMd2, pushMd3, pushMd4, pushMd5, pushMd6, pushMd7, pushMd8, pushMd9, pushMd10, pushMd11, pushMd12
     , pushLg0, pushLg1, pushLg2, pushLg3, pushLg4, pushLg5, pushLg6, pushLg7, pushLg8, pushLg9, pushLg10, pushLg11, pushLg12
     , pushXl0, pushXl1, pushXl2, pushXl3, pushXl4, pushXl5, pushXl6, pushXl7, pushXl8, pushXl9, pushXl10, pushXl11, pushXl12
+    , pushXxl0, pushXxl1, pushXxl2, pushXxl3, pushXxl4, pushXxl5, pushXxl6, pushXxl7, pushXxl8, pushXxl9, pushXxl10, pushXxl11, pushXxl12
+
     , orderXsFirst, orderXs1, orderXs2, orderXs3, orderXs4, orderXs5, orderXs6, orderXs7, orderXs8, orderXs9, orderXs10, orderXs11, orderXs12, orderXsLast
     , orderSmFirst, orderSm1, orderSm2, orderSm3, orderSm4, orderSm5, orderSm6, orderSm7, orderSm8, orderSm9, orderSm10, orderSm11, orderSm12, orderSmLast
     , orderMdFirst, orderMd1, orderMd2, orderMd3, orderMd4, orderMd5, orderMd6, orderMd7, orderMd8, orderMd9, orderMd10, orderMd11, orderMd12, orderMdLast
     , orderLgFirst, orderLg1, orderLg2, orderLg3, orderLg4, orderLg5, orderLg6, orderLg7, orderLg8, orderLg9, orderLg10, orderLg11, orderLg12, orderLgLast
     , orderXlFirst, orderXl1, orderXl2, orderXl3, orderXl4, orderXl5, orderXl6, orderXl7, orderXl8, orderXl9, orderXl10, orderXl11, orderXl12, orderXlLast
+    , orderXxlFirst, orderXxl1, orderXxl2, orderXxl3, orderXxl4, orderXxl5, orderXxl6, orderXxl7, orderXxl8, orderXxl9, orderXxl10, orderXxl11, orderXxl12, orderXxlLast
+
     , attrs, textAlign, Option
     )
 
@@ -33,7 +46,9 @@ module Bootstrap.Grid.Col exposing
 
 # Vertical alignment
 
-@docs topXs, topSm, topMd, topLg, topXl, middleXs, middleSm, middleMd, middleLg, middleXl, bottomXs, bottomSm, bottomMd, bottomLg, bottomXl
+@docs topXs, topSm, topMd, topLg, topXl, topXxl,
+middleXs, middleSm, middleMd, middleLg, middleXl, middleXxl,
+bottomXs, bottomSm, bottomMd, bottomLg, bottomXl, bottomXxl
 
 
 # Sizing
@@ -63,6 +78,9 @@ module Bootstrap.Grid.Col exposing
 
 @docs xl, xl1, xl2, xl3, xl4, xl5, xl6, xl7, xl8, xl9, xl10, xl11, xl12, xlAuto
 
+## Extra Extra Large
+
+@docs xxl, xxl1, xxl2, xxl3, xxl4, xxl5, xxl6, xxl7, xxl8, xxl9, xxl10, xxl11, xxl12, xxlAuto
 
 # Offsets
 
@@ -90,6 +108,11 @@ module Bootstrap.Grid.Col exposing
 ## Extra Large
 
 @docs offsetXl0, offsetXl1, offsetXl2, offsetXl3, offsetXl4, offsetXl5, offsetXl6, offsetXl7, offsetXl8, offsetXl9, offsetXl10, offsetXl11
+
+## Extra Extra Large
+
+@docs offsetXxl0, offsetXxl1, offsetXxl2, offsetXxl3, offsetXxl4, offsetXxl5, offsetXxl6, offsetXxl7, offsetXxl8, offsetXxl9, offsetXxl10, offsetXxl11
+
 
 
 # Pulls
@@ -119,6 +142,10 @@ module Bootstrap.Grid.Col exposing
 
 @docs pullXl0, pullXl1, pullXl2, pullXl3, pullXl4, pullXl5, pullXl6, pullXl7, pullXl8, pullXl9, pullXl10, pullXl11, pullXl12
 
+## Extra Extra Large
+
+@docs pullXxl0, pullXxl1, pullXxl2, pullXxl3, pullXxl4, pullXxl5, pullXxl6, pullXxl7, pullXxl8, pullXxl9, pullXxl10, pullXxl11, pullXxl12
+
 
 # Pushes
 
@@ -147,6 +174,9 @@ module Bootstrap.Grid.Col exposing
 
 @docs pushXl0, pushXl1, pushXl2, pushXl3, pushXl4, pushXl5, pushXl6, pushXl7, pushXl8, pushXl9, pushXl10, pushXl11, pushXl12
 
+## Extra Extra Large
+
+@docs pushXxl0, pushXxl1, pushXxl2, pushXxl3, pushXxl4, pushXxl5, pushXxl6, pushXxl7, pushXxl8, pushXxl9, pushXxl10, pushXxl11, pushXxl12
 
 # Order
 
@@ -174,6 +204,10 @@ module Bootstrap.Grid.Col exposing
 ## Extra Large
 
 @docs orderXlFirst, orderXl1, orderXl2, orderXl3, orderXl4, orderXl5, orderXl6, orderXl7, orderXl8, orderXl9, orderXl10, orderXl11, orderXl12, orderXlLast
+
+## Extra Extra Large
+
+@docs orderXxlFirst, orderXxl1, orderXxl2, orderXxl3, orderXxl4, orderXxl5, orderXxl6, orderXxl7, orderXxl8, orderXxl9, orderXxl10, orderXxl11, orderXxl12, orderXxlLast
 
 
 # Misc
@@ -246,6 +280,12 @@ topXl =
 
 
 {-| -}
+topXxl : Option msg
+topXxl =
+    colVAlign XXL Top
+
+
+{-| -}
 middleXs : Option msg
 middleXs =
     colVAlign XS Middle
@@ -276,6 +316,12 @@ middleXl =
 
 
 {-| -}
+middleXxl : Option msg
+middleXxl =
+    colVAlign XXL Middle
+
+
+{-| -}
 bottomXs : Option msg
 bottomXs =
     colVAlign XS Bottom
@@ -303,6 +349,11 @@ bottomLg =
 bottomXl : Option msg
 bottomXl =
     colVAlign XL Bottom
+
+{-| -}
+bottomXxl : Option msg
+bottomXxl =
+    colVAlign XXL Bottom
 
 
 
@@ -746,6 +797,92 @@ xlAuto =
     width XL ColAuto
 
 
+-- XXL widths
+
+
+{-| -}
+xxl : Option msg
+xxl =
+    width XXL Col
+
+
+{-| -}
+xxl1 : Option msg
+xxl1 =
+    width XXL Col1
+
+
+{-| -}
+xxl2 : Option msg
+xxl2 =
+    width XXL Col2
+
+
+{-| -}
+xxl3 : Option msg
+xxl3 =
+    width XXL Col3
+
+
+{-| -}
+xxl4 : Option msg
+xxl4 =
+    width XXL Col4
+
+
+{-| -}
+xxl5 : Option msg
+xxl5 =
+    width XXL Col5
+
+
+{-| -}
+xxl6 : Option msg
+xxl6 =
+    width XXL Col6
+
+
+{-| -}
+xxl7 : Option msg
+xxl7 =
+    width XXL Col7
+
+
+{-| -}
+xxl8 : Option msg
+xxl8 =
+    width XXL Col8
+
+
+{-| -}
+xxl9 : Option msg
+xxl9 =
+    width XXL Col9
+
+
+{-| -}
+xxl10 : Option msg
+xxl10 =
+    width XXL Col10
+
+
+{-| -}
+xxl11 : Option msg
+xxl11 =
+    width XXL Col11
+
+
+{-| -}
+xxl12 : Option msg
+xxl12 =
+    width XXL Col12
+
+
+{-| -}
+xxlAuto : Option msg
+xxlAuto =
+    width XXL ColAuto
+
 
 {- *************** OFFSETS ******************** -}
 -- XS Offsets
@@ -1052,7 +1189,7 @@ offsetLg11 =
 {-| -}
 offsetXl0 : Option msg
 offsetXl0 =
-    offset LG Offset0
+    offset XL Offset0
 
 
 {-| -}
@@ -1119,6 +1256,80 @@ offsetXl10 =
 offsetXl11 : Option msg
 offsetXl11 =
     offset XL Offset11
+
+-- XXL Offsets
+
+
+{-| -}
+offsetXxl0 : Option msg
+offsetXxl0 =
+    offset XXL Offset0
+
+
+{-| -}
+offsetXxl1 : Option msg
+offsetXxl1 =
+    offset XXL Offset1
+
+
+{-| -}
+offsetXxl2 : Option msg
+offsetXxl2 =
+    offset XXL Offset2
+
+
+{-| -}
+offsetXxl3 : Option msg
+offsetXxl3 =
+    offset XXL Offset3
+
+
+{-| -}
+offsetXxl4 : Option msg
+offsetXxl4 =
+    offset XXL Offset4
+
+
+{-| -}
+offsetXxl5 : Option msg
+offsetXxl5 =
+    offset XXL Offset5
+
+
+{-| -}
+offsetXxl6 : Option msg
+offsetXxl6 =
+    offset XXL Offset6
+
+
+{-| -}
+offsetXxl7 : Option msg
+offsetXxl7 =
+    offset XXL Offset7
+
+
+{-| -}
+offsetXxl8 : Option msg
+offsetXxl8 =
+    offset XXL Offset8
+
+
+{-| -}
+offsetXxl9 : Option msg
+offsetXxl9 =
+    offset XXL Offset9
+
+
+{-| -}
+offsetXxl10 : Option msg
+offsetXxl10 =
+    offset XXL Offset10
+
+
+{-| -}
+offsetXxl11 : Option msg
+offsetXxl11 =
+    offset XXL Offset11
 
 
 
@@ -1532,6 +1743,87 @@ pullXl12 =
     pull XL Move12
 
 
+-- XXL Pulls
+
+
+{-| -}
+pullXxl0 : Option msg
+pullXxl0 =
+    pull XXL Move0
+
+
+{-| -}
+pullXxl1 : Option msg
+pullXxl1 =
+    pull XXL Move1
+
+
+{-| -}
+pullXxl2 : Option msg
+pullXxl2 =
+    pull XXL Move2
+
+
+{-| -}
+pullXxl3 : Option msg
+pullXxl3 =
+    pull XXL Move3
+
+
+{-| -}
+pullXxl4 : Option msg
+pullXxl4 =
+    pull XXL Move4
+
+
+{-| -}
+pullXxl5 : Option msg
+pullXxl5 =
+    pull XXL Move5
+
+
+{-| -}
+pullXxl6 : Option msg
+pullXxl6 =
+    pull XXL Move6
+
+
+{-| -}
+pullXxl7 : Option msg
+pullXxl7 =
+    pull XXL Move7
+
+
+{-| -}
+pullXxl8 : Option msg
+pullXxl8 =
+    pull XXL Move8
+
+
+{-| -}
+pullXxl9 : Option msg
+pullXxl9 =
+    pull XXL Move9
+
+
+{-| -}
+pullXxl10 : Option msg
+pullXxl10 =
+    pull XXL Move10
+
+
+{-| -}
+pullXxl11 : Option msg
+pullXxl11 =
+    pull XXL Move11
+
+
+{-| -}
+pullXxl12 : Option msg
+pullXxl12 =
+    pull XXL Move12
+
+
 
 {- *********** Pushes ******************** -}
 -- XS Pushes
@@ -1941,6 +2233,87 @@ pushXl11 =
 pushXl12 : Option msg
 pushXl12 =
     push XL Move12
+
+
+-- XXL Pushes
+
+
+{-| -}
+pushXxl0 : Option msg
+pushXxl0 =
+    push XXL Move0
+
+
+{-| -}
+pushXxl1 : Option msg
+pushXxl1 =
+    push XXL Move1
+
+
+{-| -}
+pushXxl2 : Option msg
+pushXxl2 =
+    push XXL Move2
+
+
+{-| -}
+pushXxl3 : Option msg
+pushXxl3 =
+    push XXL Move3
+
+
+{-| -}
+pushXxl4 : Option msg
+pushXxl4 =
+    push XXL Move4
+
+
+{-| -}
+pushXxl5 : Option msg
+pushXxl5 =
+    push XXL Move5
+
+
+{-| -}
+pushXxl6 : Option msg
+pushXxl6 =
+    push XXL Move6
+
+
+{-| -}
+pushXxl7 : Option msg
+pushXxl7 =
+    push XXL Move7
+
+
+{-| -}
+pushXxl8 : Option msg
+pushXxl8 =
+    push XXL Move8
+
+
+{-| -}
+pushXxl9 : Option msg
+pushXxl9 =
+    push XXL Move9
+
+
+{-| -}
+pushXxl10 : Option msg
+pushXxl10 =
+    push XXL Move10
+
+
+{-| -}
+pushXxl11 : Option msg
+pushXxl11 =
+    push XXL Move11
+
+
+{-| -}
+pushXxl12 : Option msg
+pushXxl12 =
+    push XXL Move12
 
 
 
@@ -2382,3 +2755,92 @@ orderXl12 =
 orderXlLast : Option msg
 orderXlLast =
     order XL OrderLast
+
+
+
+
+-- XXL Orders
+
+
+{-| -}
+orderXxlFirst : Option msg
+orderXxlFirst =
+    order XXL OrderFirst
+
+
+{-| -}
+orderXxl1 : Option msg
+orderXxl1 =
+    order XXL Order1
+
+
+{-| -}
+orderXxl2 : Option msg
+orderXxl2 =
+    order XXL Order2
+
+
+{-| -}
+orderXxl3 : Option msg
+orderXxl3 =
+    order XXL Order3
+
+
+{-| -}
+orderXxl4 : Option msg
+orderXxl4 =
+    order XXL Order4
+
+
+{-| -}
+orderXxl5 : Option msg
+orderXxl5 =
+    order XXL Order5
+
+
+{-| -}
+orderXxl6 : Option msg
+orderXxl6 =
+    order XXL Order6
+
+
+{-| -}
+orderXxl7 : Option msg
+orderXxl7 =
+    order XXL Order7
+
+
+{-| -}
+orderXxl8 : Option msg
+orderXxl8 =
+    order XXL Order8
+
+
+{-| -}
+orderXxl9 : Option msg
+orderXxl9 =
+    order XXL Order9
+
+
+{-| -}
+orderXxl10 : Option msg
+orderXxl10 =
+    order XXL Order10
+
+
+{-| -}
+orderXxl11 : Option msg
+orderXxl11 =
+    order XXL Order11
+
+
+{-| -}
+orderXxl12 : Option msg
+orderXxl12 =
+    order XXL Order12
+
+
+{-| -}
+orderXxlLast : Option msg
+orderXxlLast =
+    order XXL OrderLast
