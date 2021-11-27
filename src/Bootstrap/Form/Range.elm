@@ -168,7 +168,7 @@ applyModifier modifier options =
 
 toAttributes : Options msg -> List (Html.Attribute msg)
 toAttributes options =
-    [ Attributes.class "form-control-range"
+    [ Attributes.class "form-range"
     , Attributes.type_ "range"
     , Attributes.disabled options.disabled
     ]

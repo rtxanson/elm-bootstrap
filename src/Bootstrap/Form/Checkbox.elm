@@ -1,5 +1,5 @@
 module Bootstrap.Form.Checkbox exposing
-    ( checkbox, custom, mkCheck, label, advancedCheckbox, advancedCustom, Label
+    ( checkbox, mkCheck, label, advancedCheckbox, advancedCustom, Label
     , id, checked, inline, indeterminate, disabled, onCheck, attrs, success, danger, Option
     )
 
@@ -8,7 +8,7 @@ module Bootstrap.Form.Checkbox exposing
 
 # Creating
 
-@docs checkbox, custom, mkCheck, label, advancedCheckbox, advancedCustom, Label
+@docs checkbox, mkCheck, label, advancedCheckbox, advancedCustom, Label
 
 
 # Options
@@ -64,7 +64,6 @@ type alias Options msg =
     { id : Maybe String
     , state : CheckValue
     , inline : Bool
-    , custom : Bool
     , disabled : Bool
     , onChecked : Maybe (Bool -> msg)
     , validation : Maybe FormInternal.Validation
@@ -87,7 +86,9 @@ checkbox options labelText =
     create options (label [] [ Html.text labelText ]) |> view
 
 
-{-| Create a composable Bootstrap custom styled checkbox
+{-| Deprecated in BS5
+
+Create a composable Bootstrap custom styled checkbox
 
     Checkbox.custom
         [ Checkbox.id "myCustomChk"
@@ -174,19 +175,15 @@ view (Checkbox chk) =
     in
     Html.div
         [ Attributes.classList
-            [ ( "form-check", not opts.custom )
-            , ( "form-check-inline", not opts.custom && opts.inline )
-            , ( "custom-control", opts.custom )
-            , ( "custom-checkbox", opts.custom )
-            , ( "custom-control-inline", opts.inline && opts.custom )
+            [ ( "form-check", True )
+            , ( "form-check-inline", opts.inline )
             ]
         ]
         [ Html.input (toAttributes opts) []
         , Html.label
             (label_.attributes
                 ++ [ Attributes.classList
-                        [ ( "form-check-label", not opts.custom )
-                        , ( "custom-control-label", opts.custom )
+                        [ ( "form-check-label", True )
                         ]
                    ]
                 ++ (case opts.id of
@@ -292,7 +289,7 @@ applyModifier modifier options =
             { options | onChecked = Just toMsg }
 
         Custom ->
-            { options | custom = True }
+            options
 
         Disabled val ->
             { options | disabled = val }
@@ -307,8 +304,7 @@ applyModifier modifier options =
 toAttributes : Options msg -> List (Html.Attribute msg)
 toAttributes options =
     [ Attributes.classList
-        [ ( "form-check-input", not options.custom )
-        , ( "custom-control-input", options.custom )
+        [ ( "form-check-input", True )
         ]
     , Attributes.type_ "checkbox"
     , Attributes.disabled options.disabled
@@ -334,7 +330,6 @@ defaultOptions =
     { id = Nothing
     , state = Off
     , inline = False
-    , custom = False
     , disabled = False
     , onChecked = Nothing
     , validation = Nothing

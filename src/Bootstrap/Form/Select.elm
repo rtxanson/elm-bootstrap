@@ -183,7 +183,7 @@ toAttributes modifiers =
     in
     [ Attributes.classList
         [ ( "form-control", not options.custom )
-        , ( "custom-select", options.custom )
+        , ( "form-select", options.custom )
         ]
     , Attributes.disabled options.disabled
     ]
@@ -238,11 +238,7 @@ sizeAttribute : Bool -> ScreenSize -> Maybe (Html.Attribute msg)
 sizeAttribute isCustom size_ =
     let
         prefix =
-            if isCustom then
-                "custom-select-"
-
-            else
-                "form-control-"
+            "form-control-"
     in
     Maybe.map
         (\s -> Attributes.class <| prefix ++ s)

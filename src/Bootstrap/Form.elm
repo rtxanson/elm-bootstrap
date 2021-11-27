@@ -82,7 +82,7 @@ form attributes children =
 -}
 formInline : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
 formInline attributes =
-    form (Attributes.class "form-inline" :: attributes)
+    form (Attributes.class "deprecated" :: attributes)
 
 
 {-| 
@@ -112,7 +112,7 @@ group options children =
 label : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
 label attributes children =
     Html.label
-        (Attributes.class "form-control-label" :: attributes)
+        (Attributes.class "form-label" :: attributes)
         children
 
 
