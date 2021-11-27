@@ -209,12 +209,20 @@ subscriptions model =
         , Navbar.subscriptions model.navbarState NavbarMsg
         ]
 
+mainHeader : Model -> Html Msg
+mainHeader model = 
+    header []
+        [ navbar model
+
+        ]
+
 
 view : Model -> Html Msg
 view model =
-    Grid.container []
+    div []
         [ CDN.stylesheet
         , CDN.fontAwesome
+        , mainHeader model
         , mainContent model
         ]
 
@@ -241,8 +249,7 @@ popoverButton state msg =
 mainContent : Model -> Html Msg
 mainContent model =
     div [ style "margin-top" "60px" ]
-        [ navbar model
-        , Grid.containerFluid []
+        [ Grid.containerFluid []
             [ simpleForm
             , gridForm
             , div []
@@ -478,6 +485,7 @@ simpleForm =
                 , Form.label [] [ text "A group of sorts" ]
                 , InputGrp.config
                     (InputGrp.password [])
+                    |> InputGrp.attrs [ Spacing.mb3 ]
                     |> InputGrp.small
                     |> InputGrp.predecessors
                         [ InputGrp.span [] [ text "@" ] ]
@@ -487,6 +495,7 @@ simpleForm =
                     |> InputGrp.view
                 , InputGrp.config
                     (InputGrp.password [])
+                    |> InputGrp.attrs [ Spacing.mb3 ]
                     |> InputGrp.predecessors
                         [ InputGrp.span [] [ text "@" ] ]
                     |> InputGrp.successors
@@ -496,15 +505,16 @@ simpleForm =
                 , InputGrp.config
                     (InputGrp.email [])
                     |> InputGrp.large
+                    |> InputGrp.attrs [ Spacing.mb3 ]
                     |> InputGrp.predecessors
                         [ InputGrp.checkbox [] ]
-                        
                     |> InputGrp.successors
                         [ InputGrp.button [ Button.large, Button.outlinePrimary ] [ text "Do it!" ]
                         ]
                     |> InputGrp.view
                 , InputGrp.config
                     (InputGrp.file [])
+                    |> InputGrp.attrs [ Spacing.mb3 ]
                     |> InputGrp.predecessors
                         [ InputGrp.radio [] ]
                     |> InputGrp.successors

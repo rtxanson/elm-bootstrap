@@ -115,6 +115,7 @@ collapseExtraLarge, collapseExtraExtraLarge, container, attrs
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import Bootstrap.Internal.Role as RoleInternal
 import Bootstrap.Utilities.DomHelper as DomHelper
+import Bootstrap.Grid as Grid
 import Browser.Dom
 import Browser.Events
 import Color exposing (Color)
@@ -124,6 +125,7 @@ import Html.Attributes exposing (class, classList, href, id, style, type_)
 import Html.Events exposing (custom, on, onClick)
 import Json.Decode as Json
 import Task
+import Bootstrap.Button exposing (attrs)
 
 
 {-| Opaque type representing the view state of the navbar and any navbar dropdown menus
@@ -428,29 +430,38 @@ view :
     -> Config msg
     -> Html.Html msg
 view state ((Config configRec) as conf) =
-    Html.nav
-        (navbarAttributes configRec.options)
-        (maybeBrand configRec.brand
-            ++ [ Html.button
-                    [ class <|
-                        "navbar-toggler"
-                            ++ (Maybe.map (\_ -> " navbar-toggler-right") configRec.brand
-                                    |> Maybe.withDefault ""
-                               )
+    let
+        -- TODO: BS5 nav supports various containers, so
+        -- navbar container option should probably accept Maybe (Grid.container opts)
+        navwrap = 
+            if configRec.options.isContainer == True 
+                then Html.nav viewattrs [ Grid.container [] viewchildren ]
+                else Html.nav viewattrs viewchildren
+        viewattrs = (navbarAttributes configRec.options)
+        viewchildren =
+            (maybeBrand configRec.brand
+                ++ [ Html.button
+                        [ class <|
+                            "navbar-toggler"
+                                ++ (Maybe.map (\_ -> " navbar-toggler-right") configRec.brand
+                                        |> Maybe.withDefault ""
+                                   )
 
-                    -- navbar-toggler-right"
-                    , type_ "button"
-                    , toggleHandler state configRec
-                    ]
-                    [ Html.span [ class "navbar-toggler-icon" ] [] ]
-               ]
-            ++ [ Html.div
-                    (menuAttributes state configRec)
-                    [ Html.div (menuWrapperAttributes state configRec)
-                        ([ renderNav state configRec configRec.items ] ++ renderCustom configRec.customItems)
-                    ]
-               ]
-        )
+                        -- navbar-toggler-right"
+                        , type_ "button"
+                        , toggleHandler state configRec
+                        ]
+                        [ Html.span [ class "navbar-toggler-icon" ] [] ]
+                   ]
+                ++ [ Html.div
+                        (menuAttributes state configRec)
+                        [ Html.div (menuWrapperAttributes state configRec)
+                            ([ renderNav state configRec configRec.items ] ++ renderCustom configRec.customItems)
+                        ]
+                   ]
+            )
+    in
+        navwrap 
 
 
 {-| Use a slide up/down animation for toggling the navbar menu when collapsed.
@@ -490,6 +501,7 @@ container : Config msg -> Config msg
 container conf =
     updateOptions (\opts -> { opts | isContainer = True }) conf
 
+-- TODO: BS5 allows container-fluid inside
 
 {-| Use a light background color (with a dark text)
 -}
@@ -1085,7 +1097,7 @@ navbarAttributes : Options msg -> List (Html.Attribute msg)
 navbarAttributes options =
     [ classList
         [ ( "navbar", True )
-        , ( "container", options.isContainer )
+        -- TODO: this becomes element in BS5 , ( "container", options.isContainer )
         ]
     ]
         ++ expandOption options.toggleAt

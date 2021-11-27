@@ -25,9 +25,13 @@ comparisons:
     - [ ] Util.Spacing
   - [ ] colors 
   - [ ] container breakpoints
+  - [ ] search XL / Xl and make sure XXL / Xxl variants exist
+  - [ ] nav inner container opts
   - [ ] vertical spacing classes
   - [ ] floating labels
   - [ ] placeholders
   - [ ] rtl
   - [ ] html attrs for js behaviors ? 
+  - [ ] Offcanvas component
+  - [ ] accessibility 
 
