@@ -1,5 +1,5 @@
 module Bootstrap.Form.Input exposing
-    ( text, password, datetimeLocal, date, month, time, week, number, email, url, search, tel, color
+    ( text, password, datetimeLocal, date, month, time, week, number, email, file, url, search, tel, color
     , id, small, large, value, disabled, readonly, plainText, onInput, placeholder, attrs, Option
     , success, danger
     )
@@ -64,6 +64,7 @@ type InputType
     | Week
     | Number
     | Email
+    | File
     | Url
     | Search
     | Tel
@@ -154,6 +155,11 @@ email : List (Option msg) -> Html.Html msg
 email =
     input Email
 
+{-| Create an input with type="file"
+-}
+file : List (Option msg) -> Html.Html msg
+file =
+    input File
 
 {-| Create an input with type="url"
 -}
@@ -402,6 +408,9 @@ typeAttribute inputType =
 
             Email ->
                 "email"
+
+            File ->
+                "file"
 
             Url ->
                 "url"

@@ -3,7 +3,7 @@ module Bootstrap.Form.InputGroup exposing
     , predecessors, successors
         , text, button, checkbox, radio, dropdown, splitDropdown, span
     , Config, Input, Addon(..)
-    , password, datetimeLocal, date, month, time, week, number, email, url, search, tel
+    , password, datetimeLocal, date, month, time, week, number, email, file, url, search, tel
     , large, small
     , attrs
     )
@@ -313,6 +313,12 @@ number =
 email : List (Input.Option msg) -> Input msg
 email =
     input Input.email
+
+{-| Create an input add-on with type="file"
+-}
+file : List (Input.Option msg) -> Input msg
+file =
+    input Input.file
 
 
 {-| Create an input add-on with type="url"
