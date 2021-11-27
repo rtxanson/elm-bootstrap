@@ -694,8 +694,8 @@ renderFooter maybeFooter =
 closeButton : msg -> Html.Html msg
 closeButton closeMsg =
     Html.button
-        [ Attr.class "close", Events.onClick <| closeMsg ]
-        [ Html.text "×" ]
+        [ Attr.class "btn-close", Events.onClick <| closeMsg ]
+        [ Html.text "" ]
 
 
 backdrop : Visibility -> ConfigRec msg -> List (Html.Html msg)
