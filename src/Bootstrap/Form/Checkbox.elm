@@ -1,5 +1,5 @@
 module Bootstrap.Form.Checkbox exposing
-    ( checkbox, custom, label, advancedCheckbox, advancedCustom, Label
+    ( checkbox, custom, mkCheck, label, advancedCheckbox, advancedCustom, Label
     , id, checked, inline, indeterminate, disabled, onCheck, attrs, success, danger, Option
     )
 
@@ -8,7 +8,7 @@ module Bootstrap.Form.Checkbox exposing
 
 # Creating
 
-@docs checkbox, custom, label, advancedCheckbox, advancedCustom, Label
+@docs checkbox, custom, mkCheck, label, advancedCheckbox, advancedCustom, Label
 
 
 # Options
@@ -101,6 +101,18 @@ custom : List (Option msg) -> String -> Html.Html msg
 custom options labelText =
     create (Custom :: options) (label [] [ Html.text labelText ]) |> view
 
+{-| Create a bare checkbox with no extra stuff, unlike `custom` which still adds things.
+
+    Checkbox.mkCheck
+        [ Checkbox.id "myCustomChk"
+        , Checkbox.checked True
+        , Checkbox.onCheck MyCheckMsg
+        ]
+        "My Custom Checkbox"
+
+-}
+mkCheck : List (Option msg) -> String -> Html.Html msg
+mkCheck options label_ = create options (label [] [ Html.text label_ ]) |> view
 
 {-| Create a label for a checkbox when using advancedCheckbox or advancedCustom
 

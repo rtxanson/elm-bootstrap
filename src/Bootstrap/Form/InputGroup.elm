@@ -1,5 +1,8 @@
 module Bootstrap.Form.InputGroup exposing
-    ( view, config, predecessors, successors, text, button, dropdown, splitDropdown, span, Config, Input, Addon
+    ( view, config
+    , predecessors, successors
+        , text, button, checkbox, radio, dropdown, splitDropdown, span
+    , Config, Input, Addon(..)
     , password, datetimeLocal, date, month, time, week, number, email, url, search, tel
     , large, small
     , attrs
@@ -24,7 +27,7 @@ module Bootstrap.Form.InputGroup exposing
 
 # General
 
-@docs view, config, predecessors, successors, text, button, dropdown, splitDropdown, span, Config, Input, Addon
+@docs view, config, predecessors, successors, text, button, checkbox, radio, dropdown, splitDropdown, span, Config, Input, Addon
 
 
 # Additional input flavors
@@ -46,6 +49,7 @@ module Bootstrap.Form.InputGroup exposing
 import Bootstrap.Button as Button
 import Bootstrap.Dropdown as Dropdown
 import Bootstrap.Form.Input as Input
+import Bootstrap.Form.Checkbox as Chk
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import Html
 import Html.Attributes as Attributes
@@ -56,6 +60,7 @@ import Html.Attributes as Attributes
 type Config msg
     = Config
         { input : Input msg
+        -- TODO: BS5 allows List (Input msg)
         , predecessors : List (Addon msg)
         , successors : List (Addon msg)
         , size : Maybe ScreenSize
@@ -101,18 +106,18 @@ view (Config conf) =
             conf.input
     in
     Html.div
-        ([ Attributes.class "input-group" ]
-            ++ ([ Maybe.andThen sizeAttribute conf.size ]
+        (( Attributes.class "input-group" )
+            :: ([ Maybe.andThen sizeAttribute conf.size ]
                     |> List.filterMap identity
                )
             ++ conf.attributes
         )
         (List.map
-            (\(Addon e) -> Html.div [ Attributes.class "input-group-prepend" ] [ e ])
+            (\(Addon e) -> e) 
             conf.predecessors
-            ++ [ input_ ]
-            ++ List.map
-                (\(Addon e) -> Html.div [ Attributes.class "input-group-append" ] [ e ])
+            ++ input_
+            :: List.map
+                (\(Addon e) -> e)
                 conf.successors
         )
 
@@ -175,6 +180,39 @@ button options children =
     Button.button options children
         |> Addon
 
+{-| Create a checkbox add-on.
+
+  - `attributes` List of checkbox options
+
+-}
+checkbox :
+    List (Html.Attribute msg)
+    -> Addon msg
+checkbox attributes =
+    -- ( Chk.mkCheck options "" )
+    --     |> Addon
+    Html.div [ Attributes.class "input-group-text" ]
+        [ Html.input 
+            ( ( Attributes.type_ "checkbox") :: attributes  ) 
+            []
+        ] |> Addon
+
+{-| Create a radio add-on.
+
+  - `attributes` List of checkbox options
+
+-}
+radio :
+    List (Html.Attribute msg)
+    -> Addon msg
+radio attributes =
+    -- ( Chk.mkCheck options "" )
+    --     |> Addon
+    Html.div [ Attributes.class "input-group-text" ]
+        [ Html.input 
+            ( ( Attributes.type_ "radio") :: attributes  ) 
+            []
+        ] |> Addon
 
 {-| Create a dropdown add-on.
 

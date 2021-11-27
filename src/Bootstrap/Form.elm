@@ -1,9 +1,10 @@
 module Bootstrap.Form exposing
     ( form, formInline
     , group, label, Option, attrs
-    , row, col, colLabel, colLabelSm, colLabelLg, Col
+    , colLabel, colLabelSm, colLabelLg, Col
     , validFeedback, invalidFeedback
     , help, helpInline
+    , renderCol
     )
 
 {-| Bootstrap provides several form control styles, layout options, and custom components for creating a wide variety of forms.
@@ -23,7 +24,7 @@ Use form groups to group items together (label + input is a typical simple examp
 
 # Grid layouts
 
-@docs row, col, colLabel, colLabelSm, colLabelLg, Col
+@docs colLabel, colLabelSm, colLabelLg, Col
 
 
 # Validation
@@ -84,9 +85,12 @@ formInline attributes =
     form (Attributes.class "form-inline" :: attributes)
 
 
-{-| Use the group function to create a grouping of related form elements.
+{-| 
+DEPRECATED in BS5. Use Grid.col and other layout tools.
+
+_ Use the group function to create a grouping of related form elements.
 It just creates a div container with a `form-group` Bootstrap class.
-Typically you use this for vertically laid out forms.
+Typically you use this for vertically laid out forms. _
 
   - `options` List of [`options`](#Option) for customizing the group
   - `children` List of children
@@ -188,36 +192,6 @@ attrs =
 
 {- Grid related functions -}
 
-
-{-| Create a form group row element. Use this function when creating horizontal forms (in various shapes)
-It reuses the options from Bootstrap.Grid.Row which gives you
-a ton of customization options for how to layout columns within this row.
-
-  - `options` List of Bootstrap.Grid.Row options
-  - `cols` List of column elements (see [`col`](#col) or [`colLabel`](#colLabel))
-
--}
-row : List (Row.Option msg) -> List (Col msg) -> Html.Html msg
-row options cols =
-    Html.div
-        (Attributes.class "form-group" :: GridInternal.rowAttributes options)
-        (List.map renderCol cols)
-
-
-{-| Create a Grid column for use in [`form rows`](#row). It reuses the options from Bootstrap.Grid.Col which gives
-you a ton of customization options for layout.
-
-  - `options` List of Bootstrap.Grid.Col options
-  - `children` List of child elements
-
--}
-col : List (Col.Option msg) -> List (Html.Html msg) -> Col msg
-col options children =
-    Col
-        { elemFn = Html.div
-        , options = options
-        , children = children
-        }
 
 
 {-| Create a label element as a grid column to be used in a [`form row`](#row).

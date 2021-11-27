@@ -2,6 +2,7 @@ module Bootstrap.Grid exposing
     ( container, containerFluid
     , row, simpleRow, keyedRow
     , col, colBreak, keyedCol, Column
+    , colForm
     )
 
 {-| Bootstrap includes a powerful mobile-first flexbox grid system for building layouts of all shapes and sizes. It’s based on a 12 column layout and has multiple tiers, one for each media query range.
@@ -49,6 +50,7 @@ import Bootstrap.Grid.Row as Row
 import Html exposing (Attribute, Html, div)
 import Html.Attributes exposing (class, classList)
 import Html.Keyed as Keyed
+import Bootstrap.Form as Form
 
 
 {-| Opaque type representing a column element
@@ -63,20 +65,20 @@ type Column msg
         { options : List (GridInternal.ColOption msg)
         , children : List ( String, Html msg )
         }
-
+    | ColForm (Form.Col msg)
 
 {-| Responsive fixed width container, which changes its max-width at breakpoint
 -}
 container : List (Attribute msg) -> List (Html msg) -> Html msg
 container attributes children =
-    div ([ class "container" ] ++ attributes) children
+    div ( ( class "container" ) :: attributes) children
 
 
 {-| Full width container spanning the entire viewport
 -}
 containerFluid : List (Attribute msg) -> List (Html msg) -> Html msg
 containerFluid attributes children =
-    div ([ class "container-fluid" ] ++ attributes) children
+    div (( class "container-fluid" ) :: attributes) children
 
 
 {-| Create a row with no configuration options
@@ -146,9 +148,14 @@ colBreak : List (Html.Attribute msg) -> Column msg
 colBreak attributes =
     ColBreak <|
         Html.div
-            ([ class "w-100" ] ++ attributes)
+            (( class "w-100" ) :: attributes)
             []
 
+{-| Create a column from a `Form.Col` element, typically `Form.colLabel`
+-}
+colForm : Form.Col msg -> Column msg
+colForm el =
+    ColForm el
 
 renderCol : Column msg -> Html msg
 renderCol column =
@@ -165,3 +172,6 @@ renderCol column =
             Keyed.node "div"
                 (GridInternal.colAttributes options)
                 children
+
+        ColForm el ->
+            Form.renderCol el
